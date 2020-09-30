@@ -10,13 +10,16 @@ import { NFL_API } from "./data/data.js";
   
       scoreContainer.innerHTML = "";
       nfl.leagues.forEach(score => {
-          console.log(nfl);
-        nfl.events.forEach(event => {
-        console.log(event.shortName);
         scoreContainer.innerHTML = `
         <h4>${score.abbreviation}</h4> 
-        <p>${event.shortName}<p>
         `;
+
+     
+        nfl.events.forEach(event => {
+        console.log(event);
+        scoreContainer.innerHTML += `
+        <th>${event.shortName}<th>
+      `
         
         })  
     });
