@@ -1,47 +1,34 @@
 import { NFL_API } from "./data/data.js";
 
 (async function () {
-  const scoreContainer = document.querySelector(".container");
+  const nflContainer = document.querySelector(".card-deck");
   const scoreURL = `${NFL_API}`;
 
   try {
     const response = await fetch(scoreURL);
     const nfl = await response.json();
 
-    scoreContainer.innerHTML = "";
-    nfl.leagues.forEach(score => {
-      scoreContainer.innerHTML = `
-        <h4>${score.abbreviation}</h4> 
-        `;
+    nflContainer.innerHTML = "";
 
-   
+    nfl.events.forEach(event => {
+      event.competitions.forEach(competition => {
+        console.log(nfl);
 
-      nfl.events.forEach(event => {
-        event.competitions.forEach(competition => {
-            console.log(event);
-            competition.competitors.forEach(competitor => {
-            console.log(competitor);   
-                
-            
-
-             
-    
-                 
-        scoreContainer.innerHTML += `
-<div class="card-group">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">  ${event.shortName} </h5>
-      <p class="card-text">score</p>
-      <p class="card-text">${event.status.displayClock}</p>
-    </div>
-  </div>
-</div>
+        const [homeTeam, awayTeam] = competition.competitors;
+        nflContainer.innerHTML += `
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title"> ${awayTeam.team.location} ${awayTeam.team.name} <img class="logo" src=" ${awayTeam.team.logo}"> @ ${homeTeam.team.location} ${homeTeam.team.name} <img class="logo" src=" ${homeTeam.team.logo}">  </h5>
+                <p class="card-text">Score: </p>
+                <p class="card-text">Time: ${event.status.displayClock} Period ${event.status.period}</p>
+                </div>
+            </div>
+            </div>
       `;
-        })
       });
-    })
     });
+
   } catch (error) {
     error = ("Nothing here", error);
     console.log(error);
