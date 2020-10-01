@@ -20,6 +20,8 @@ import { NFL_API } from "./data/data.js";
         event.competitions.forEach(competition => {
             competition.competitors.forEach(competitor => {
                 console.log(competition.competitors);
+                competitor.team[0].forEach(home => {
+                    console.log(competitor.team[0]);
         scoreContainer.innerHTML += `
 <div class="card-group">
   <div class="card">
@@ -31,6 +33,7 @@ import { NFL_API } from "./data/data.js";
   </div>
 </div>
       `;
+                })
         })
       });
     })
