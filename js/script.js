@@ -18,13 +18,20 @@ import { NFL_API } from "./data/data.js";
 
       nfl.events.forEach(event => {
         event.competitions.forEach(competition => {
+            console.log(event);
             competition.competitors.forEach(competitor => {
-                console.log(competition.competitors);
+            console.log(competitor);   
+                
+            
+
+             
+    
+                 
         scoreContainer.innerHTML += `
 <div class="card-group">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">${event.shortName}</h5>
+      <h5 class="card-title">  ${event.shortName} </h5>
       <p class="card-text">score</p>
       <p class="card-text">${event.status.displayClock}</p>
     </div>
