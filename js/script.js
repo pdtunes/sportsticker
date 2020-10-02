@@ -1,7 +1,7 @@
 import { NFL_API } from "./data/data.js";
 import { MLB_API } from "./data/data.js";
 
-(async function () {
+(async function nflScore() {
   const nflContainer = document.querySelector(".nfl");
   const nflURL = `${NFL_API}`;
 
@@ -63,42 +63,18 @@ import { MLB_API } from "./data/data.js";
   }
 })();
 
-const rssUrl =
+const nflRSS =
   "https://cors-anywhere.herokuapp.com/https://www.scorespro.com/rss2/live-football.xml";
-
-console.log(rssUrl);
-
-
-fetch(rssUrl, {
-  headers: {
-    SameSite: "None",
-    "x-site": "http://pedersteene.no/",
-  },
-})
-  .then(response => response.text())
-  .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-  .then(data => {
-    const items = data.querySelectorAll("item");
-    let html = ``;
-    const news = document.querySelector(".card-wrap");
-    items.forEach(newsItem => {
-      html += `
-        <div class="card">
-          <h4> <b> <li>
-            <a href="${
-              newsItem.querySelector("link").innerHTML
-            }" target="_blank" rel="noopener">
-              ${newsItem.querySelector("title").innerHTML}
-            </a> </li> </b>
-          </h4>
-      </div>
-      `;
-    });
-    news.innerHTML = html;
-  })
-  .catch(error => {
-    console.log("🔥", error);
-  });
-
-
-
+(async function () {
+  try {
+    const response = await fetch(nflRSS);
+    const result = await response.text();
+    if (window.DOMParser) {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(result, "text/xml");
+      console.log(xmlDoc.getElementsByTagName("title")[1].innerHTML);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})();
