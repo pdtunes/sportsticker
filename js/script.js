@@ -8,7 +8,7 @@ import { MLB_API } from "./data/data.js";
   try {
     const nflResponse = await fetch(nflURL);
     const nfl = await nflResponse.json();
-    nflContainer.innerHTML = "<h1>NFL</h1>";
+    nflContainer.innerHTML = "<h1>NFL - This is practice project and only for personal use</h1>";
 
     nfl.events.forEach(nflEvent => {
       nflEvent.competitions.forEach(nflCompetition => {
