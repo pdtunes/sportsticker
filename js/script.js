@@ -8,7 +8,8 @@ import { MLB_API } from "./data/data.js";
   try {
     const nflResponse = await fetch(nflURL);
     const nfl = await nflResponse.json();
-    nflContainer.innerHTML = "<h1>NFL - This is practice project and only for personal use</h1>";
+    nflContainer.innerHTML =
+      "<h1>NFL - This is practice project and only for personal use</h1>";
 
     nfl.events.forEach(nflEvent => {
       nflEvent.competitions.forEach(nflCompetition => {
@@ -66,13 +67,26 @@ import { MLB_API } from "./data/data.js";
 const nflRSS =
   "https://cors-anywhere.herokuapp.com/https://www.scorespro.com/rss2/live-football.xml";
 (async function () {
+  const mlbtest = document.querySelector(".mlb");
   try {
     const response = await fetch(nflRSS);
     const result = await response.text();
     if (window.DOMParser) {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(result, "text/xml");
-      console.log(xmlDoc.getElementsByTagName("title")[1].innerHTML);
+      console.log(xmlDoc.getElementsByTagName("title"));
+
+      mlbtest.innerHTML += `
+      <div class="card-deck">
+          <div class="card">
+              <div class="card-body">
+              <h5 class="card-title"> 
+              ${xmlDoc.getElementsByTagName("title")[1].innerHTML}   
+              </h5>
+              </div>
+          </div>
+          </div>
+      `;
     }
   } catch (error) {
     console.log(error);
