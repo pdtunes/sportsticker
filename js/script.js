@@ -1,13 +1,14 @@
 import { NFL_API } from "./data/data.js";
 import { MLB_API } from "./data/data.js";
 
-(async function nflScore() {
+(async function () {
   const nflContainer = document.querySelector(".nfl");
   const nflURL = `${NFL_API}`;
 
   try {
     const nflResponse = await fetch(nflURL);
     const nfl = await nflResponse.json();
+    console.log(nfl);
     nflContainer.innerHTML =
       "<h1>NFL - This is practice project and only for personal use</h1>";
 
