@@ -15,10 +15,11 @@ import { MLB_API } from "./data/data.js";
     nfl.events.forEach(nflEvent => {
       nflEvent.competitions.forEach(nflCompetition => {
         const [nflHomeTeam, nflAwayTeam] = nflCompetition.competitors;
+        console.log(nflAwayTeam.team.logo);
         nflContainer.innerHTML += `
             <div class="card">
                 <div class="card-body">
-                <h5 class="card-title"> ${nflHomeTeam.team.location} ${nflHomeTeam.team.name} <img class="logo" src=" ${nflHomeTeam.team.logo}"> @ ${nflAwayTeam.team.location} ${nflAwayTeam.team.name} <img class="logo" src=" ${nflAwayTeam.team.logo}">  </h5>
+                <h5 class="card-title">${nflHomeTeam.team.location} ${nflHomeTeam.team.name} <img class="logo" src=" ${nflHomeTeam.team.logo}"> @ ${nflAwayTeam.team.location} ${nflAwayTeam.team.name} <img class="logo" src=" ${nflAwayTeam.team.logo}">  </h5>
                 <p class="card-text">Score: </p>
                 <p class="card-text"> Time: ${nflEvent.status.displayClock} || Quarter: ${nflEvent.status.period} || Game status: ${nflEvent.status.type.description}</p>
                 </div>
