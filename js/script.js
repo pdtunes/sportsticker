@@ -43,7 +43,7 @@ import { NFL_SCORE } from "./data/data.js"
                 <p class="card-text">Score: ${hometeam} - ${awayteam}</p>
                 <p class="card-text">Stadium: ${stadium} </p>
                 <p class="card-text">Quarter: ${quarter} </p>
-                <p class="card-text">Quarter: ${clock} </p>
+                <p class="card-text">Clock: ${clock} </p>
                
                 </div>
             </div>
