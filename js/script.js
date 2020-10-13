@@ -17,8 +17,6 @@ import { NFL_SCORE } from "./data/data.js";
     for (let item in nflScore) {
       console.log(nflScore);
       const hometeamName = nflScore[item].home.abbr;
-      // <img src="${hometeamName}.jpg" /> chi.jpg chi.png
-      // <img src="${awayteamName}.jpg" /> chicago
       const awayteamName = nflScore[item].away.abbr;
       const hometeam = nflScore[item].home.score.T;
       const awayteam = nflScore[item].away.score.T;
