@@ -1,34 +1,45 @@
 import { NFL_API } from "./data/data.js";
-import { MLB_API } from "./data/data.js";
 import { NFL_SCORE } from "./data/data.js"
+
+/* import { MLB_API } from "./data/data.js"; */
 
 //NFL
 
 (async function () {
   const nflContainer = document.querySelector(".nfl");
   const nflURL = `${NFL_API}`;
+  const scoreURL = `${NFL_SCORE}`;
 
   try {
     const nflResponse = await fetch(nflURL);
     const nfl = await nflResponse.json();
+    const nflScoreResponse = await fetch(scoreURL);
+    const nflScore = await nflScoreResponse.json();
 
     nflContainer.innerHTML =
       "<h1>NFL - This is practice project and only for personal use</h1>";
 
+ 
+
     nfl.events.forEach(nflEvent => {
       nflEvent.competitions.forEach(nflCompetition => {
         const [nflHomeTeam, nflAwayTeam] = nflCompetition.competitors;
+        for(let item in nflScore) {
+          const hometeam = nflScore[item].home.score.T;
+          const awayteam = nflScore[item].away.score.T;
+       
         nflContainer.innerHTML += `
             <div class="card">
                 <div class="card-body">
-                <h5 class="card-title">${nflHomeTeam.team.location} ${nflHomeTeam.team.name} <img class="logo" src=" ${nflHomeTeam.team.logo}"> @ ${nflAwayTeam.team.location} ${nflAwayTeam.team.name} <img class="logo" src=" ${nflAwayTeam.team.logo}">  </h5>
-                <p class="card-text">Score: </p>
+                <h5 class="card-title">${nflHomeTeam.team.location} ${nflHomeTeam.team.name} <img class="logo" src=" ${nflHomeTeam.team.logo}"> - ${nflAwayTeam.team.location} ${nflAwayTeam.team.name} <img class="logo" src=" ${nflAwayTeam.team.logo}">  </h5>
+                <p class="card-text">Score: ${hometeam} ${awayteam}</p>
                 <p class="card-text"> Time: ${nflEvent.status.displayClock} || Quarter: ${nflEvent.status.period} || Game status: ${nflEvent.status.type.description}</p>
                 </div>
             </div>
             </div>
        
       `;
+    }
       });
     });
   } catch (error) {
@@ -37,36 +48,10 @@ import { NFL_SCORE } from "./data/data.js"
   }
 })();
 
-//NFL SCORE
-
-(async function () {
-  const nflContainer = document.querySelector(".nfl");
-  const scoreURL = `${NFL_SCORE}`;
-
-  try {
-    const nflResponse = await fetch(scoreURL);
-    const nflScore = await nflResponse.json();
-    console.log(nflScore);
-
-    for(let item in nflScore) {
-      const hometeam = nflScore[item].home.score.T;
-      const awayteam = nflScore[item].away.score.T;
-      console.log(nflScore[item].home.score.T)
- 
-    }
-  
-
-  } catch (error) {
-    error = ("Nothing here", error);
-    console.log(error);
-  }
-})();
 
 
 
-
-
-//MLB
+/* //MLB
 
 (async function () {
   const mlbContainer = document.querySelector(".mlb");
@@ -97,6 +82,6 @@ import { NFL_SCORE } from "./data/data.js"
     error = ("Nothing here", error);
     console.log(error);
   }
-})();
+})(); */
 
 
