@@ -15,6 +15,8 @@ import { NFL_SCORE } from "./data/data.js"
     const nfl = await nflResponse.json();
     const nflScoreResponse = await fetch(scoreURL);
     const nflScore = await nflScoreResponse.json();
+    
+  
 
     nflContainer.innerHTML =
       "<h1>NFL - This is practice project and only for personal use</h1>";
@@ -25,15 +27,24 @@ import { NFL_SCORE } from "./data/data.js"
       nflEvent.competitions.forEach(nflCompetition => {
         const [nflHomeTeam, nflAwayTeam] = nflCompetition.competitors;
         for(let item in nflScore) {
+          console.log(nflScore);
+          const hometeamName = nflScore[item].home.abbr
+          const awayteamName = nflScore[item].away.abbr
           const hometeam = nflScore[item].home.score.T;
           const awayteam = nflScore[item].away.score.T;
-       
+          const stadium = nflScore[item].stadium
+          const quarter = nflScore[item].qtr
+          const clock = nflScore[item].clock
+/*           ${nflHomeTeam.team.location} ${nflHomeTeam.team.name} */
         nflContainer.innerHTML += `
             <div class="card">
                 <div class="card-body">
-                <h5 class="card-title">${nflHomeTeam.team.location} ${nflHomeTeam.team.name} <img class="logo" src=" ${nflHomeTeam.team.logo}"> - ${nflAwayTeam.team.location} ${nflAwayTeam.team.name} <img class="logo" src=" ${nflAwayTeam.team.logo}">  </h5>
-                <p class="card-text">Score: ${hometeam} ${awayteam}</p>
-                <p class="card-text"> Time: ${nflEvent.status.displayClock} || Quarter: ${nflEvent.status.period} || Game status: ${nflEvent.status.type.description}</p>
+                <h5 class="card-title">${hometeamName} vs ${awayteamName}  </h5>
+                <p class="card-text">Score: ${hometeam} - ${awayteam}</p>
+                <p class="card-text">Stadium: ${stadium} </p>
+                <p class="card-text">Quarter: ${quarter} </p>
+                <p class="card-text">Quarter: ${clock} </p>
+               
                 </div>
             </div>
             </div>
