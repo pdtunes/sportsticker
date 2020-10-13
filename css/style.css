@@ -1,3 +1,8 @@
+body{
+  background-color: black;
+  font-family: 'Roboto', sans-serif;
+}
+
 h1{
     color: white;
 }
@@ -7,12 +12,19 @@ h1{
 }
 
 .card{
-    width: 500px;
-    border: none;
+width: 300px;
+    background-color: black;
+/*     border: solid white; */
+    flex-direction: row;
+ 
 }
 
 .card h5, p{
     color: white ;
+}
+
+.card h5{
+    font-family: 'Roboto Slab', serif;
 }
 
 .homelogo{
@@ -21,4 +33,12 @@ h1{
 
 .awaylogo{
     margin-left: 10px;
+}
+
+
+.nfl{
+justify-content: center;
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
 }
