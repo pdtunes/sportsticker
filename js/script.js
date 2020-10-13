@@ -1,5 +1,8 @@
 import { NFL_API } from "./data/data.js";
 import { MLB_API } from "./data/data.js";
+import { NFL_SCORE } from "./data/data.js"
+
+//NFL
 
 (async function () {
   const nflContainer = document.querySelector(".nfl");
@@ -8,14 +11,13 @@ import { MLB_API } from "./data/data.js";
   try {
     const nflResponse = await fetch(nflURL);
     const nfl = await nflResponse.json();
-    console.log(nfl);
+
     nflContainer.innerHTML =
       "<h1>NFL - This is practice project and only for personal use</h1>";
 
     nfl.events.forEach(nflEvent => {
       nflEvent.competitions.forEach(nflCompetition => {
         const [nflHomeTeam, nflAwayTeam] = nflCompetition.competitors;
-        console.log(nflAwayTeam.team.logo);
         nflContainer.innerHTML += `
             <div class="card">
                 <div class="card-body">
@@ -34,6 +36,37 @@ import { MLB_API } from "./data/data.js";
     console.log(error);
   }
 })();
+
+//NFL SCORE
+
+(async function () {
+  const nflContainer = document.querySelector(".nfl");
+  const scoreURL = `${NFL_SCORE}`;
+
+  try {
+    const nflResponse = await fetch(scoreURL);
+    const nflScore = await nflResponse.json();
+    console.log(nflScore);
+
+    for(let item in nflScore) {
+      const hometeam = nflScore[item].home.score.T;
+      const awayteam = nflScore[item].away.score.T;
+      console.log(nflScore[item].home.score.T)
+ 
+    }
+  
+
+  } catch (error) {
+    error = ("Nothing here", error);
+    console.log(error);
+  }
+})();
+
+
+
+
+
+//MLB
 
 (async function () {
   const mlbContainer = document.querySelector(".mlb");
@@ -66,31 +99,4 @@ import { MLB_API } from "./data/data.js";
   }
 })();
 
-const nflRSS =
-  "https://cors-anywhere.herokuapp.com/https://www.scorespro.com/rss2/live-football.xml";
-(async function () {
-  const mlbtest = document.querySelector(".mlb");
-  try {
-    const response = await fetch(nflRSS);
-    const result = await response.text();
-    if (window.DOMParser) {
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(result, "text/xml");
-      console.log(xmlDoc.getElementsByTagName("title"));
 
-      mlbtest.innerHTML += `
-      <div class="card-deck">
-          <div class="card">
-              <div class="card-body">
-              <h5 class="card-title"> 
-              ${xmlDoc.getElementsByTagName("title")[1].innerHTML}   
-              </h5>
-              </div>
-          </div>
-          </div>
-      `;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-})();
