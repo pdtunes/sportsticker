@@ -1,5 +1,5 @@
 body{
-  background-color: black;
+  background-color: #026c96;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -13,9 +13,10 @@ h1{
 
 .card{
 width: 300px;
-    background-color: black;
-/*     border: solid white; */
+    background-color: #026c96;
+ border: solid white; 
     flex-direction: row;
+    margin: 5px;
  
 }
 
@@ -35,10 +36,14 @@ width: 300px;
     margin-left: 10px;
 }
 
+h1{
+    font-family: 'Roboto Slab', serif;
+}
 
-.nfl{
+.nfl, .nhl{
 justify-content: center;
     display: flex; 
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 20px;
 }
