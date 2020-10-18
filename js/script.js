@@ -12,6 +12,8 @@ import { NHL_SCORE } from "./data/data.js";
     const nflScoreResponse = await fetch(scoreURL);
     const nflScore = await nflScoreResponse.json();
 
+    console.log(nflScore);
+
     /* nflContainer.innerHTML = "<h1>NFL</h1>"; */
 
     for (let item in nflScore) {
