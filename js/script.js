@@ -1,7 +1,5 @@
 import { NFL_SCORE } from "./data/data.js";
-import { NHL_SCORE } from "./data/data.js";
 
-/* import { MLB_API } from "./data/data.js"; */
 
 //NFL
 (async function () {
@@ -14,7 +12,6 @@ import { NHL_SCORE } from "./data/data.js";
 
     console.log(nflScore);
 
-    /* nflContainer.innerHTML = "<h1>NFL</h1>"; */
 
     for (let item in nflScore) {
       const hometeamName = nflScore[item].home.abbr;
