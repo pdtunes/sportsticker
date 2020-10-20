@@ -2,7 +2,7 @@ import { NFL_SCORE } from "./data/data.js";
 import { NHL_SCORE } from "./data/data.js";
 
 //NFL
-(async function () {
+/* (async function () {
   const nflContainer = document.querySelector(".nfl");
   const scoreURL = `${NFL_SCORE}`;
 
@@ -37,7 +37,7 @@ import { NHL_SCORE } from "./data/data.js";
     error = ("Nothing here", error);
     console.log(error);
   }
-})();
+})(); */
 
 //NHL
 
@@ -50,8 +50,8 @@ import { NHL_SCORE } from "./data/data.js";
     const nhlScore = await nhlScoreResponse.json();
 
     console.log(nhlScore.games);
-    for (let item in nhlScore.games) {
-      console.log(nflscore.games[item].teams);
+    for (let item in nhlScore) {
+      console.log(nhlScore.games[item].goals);
     }
     /* 
     for (let item in nflScore) {
