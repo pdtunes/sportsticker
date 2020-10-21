@@ -1,8 +1,9 @@
 import { NFL_SCORE } from "./data/data.js";
 import { NHL_SCORE } from "./data/data.js";
+import { MLB_SCORE } from "./data/data.js"
 
-//NFL
-/* (async function () {
+/* //NFL
+(async function () {
   const nflContainer = document.querySelector(".nfl");
   const scoreURL = `${NFL_SCORE}`;
 
@@ -37,12 +38,12 @@ import { NHL_SCORE } from "./data/data.js";
     error = ("Nothing here", error);
     console.log(error);
   }
-})(); */
+})();
 
 //NHL
 
 (async function () {
-  const nhlContainer = document.querySelector(".nfl");
+  const nhlContainer = document.querySelector(".nhl");
   const scoreURL = `${NHL_SCORE}`;
 
   try {
@@ -51,17 +52,58 @@ import { NHL_SCORE } from "./data/data.js";
 
 
     nhlScore.games.forEach(match => {
-  
+      console.log(match);
+      
       const hometeamName = match.teams.home.abbreviation;
       const awayteamName = match.teams.away.abbreviation;
- 
+      const gameStatus = match.status.state;
+      
 
       nhlContainer.innerHTML += `
 
       <div class="card">
                 <div class="card-body">
                 <h5 class="card-title"><img class="homelogo" src="./assets/nhl/${hometeamName}.png"</img>${hometeamName} vs ${awayteamName} <img class="awaylogo" src="./assets/nhl/${awayteamName}.png" </img> </h5>
-                <p class="card-text">Score: ${match.scores}</p>
+                <p class="card-text">Score: ${match.scores[hometeamName]} - ${match.scores[awayteamName]}</p>
+                <p class="card-text">Status: ${gameStatus}</p>
+            </div>
+            </div>
+            </div>
+      `;
+    })
+  } catch (error) {
+    error = ("Nothing here", error);
+    console.log(error);
+  }
+})(); */
+
+
+//MLB
+
+(async function () {
+  const mlbContainer = document.querySelector(".nhl");
+  const scoreURL = `${MLB_SCORE}`;
+
+  try {
+    const mlbScoreResponse = await fetch(scoreURL);
+    const mlbScore = await mlbScoreResponse.json();
+console.log(mlbScore);
+
+    mlbScore.games.forEach(match => {
+      console.log(match);
+      
+      const hometeamName = match.teams.home.abbreviation;
+      const awayteamName = match.teams.away.abbreviation;
+      const gameStatus = match.status.state;
+      
+
+      mlbContainer.innerHTML += `
+
+      <div class="card">
+                <div class="card-body">
+                <h5 class="card-title"><img class="homelogo" src="./assets/mlb/${hometeamName}.png"</img>${hometeamName} vs ${awayteamName} <img class="awaylogo" src="./assets/mlb/${awayteamName}.png" </img> </h5>
+                <p class="card-text">Score: ${match.scores[hometeamName]} - ${match.scores[awayteamName]}</p>
+                <p class="card-text">Status: ${gameStatus}</p>
             </div>
             </div>
             </div>

@@ -1,51 +1,60 @@
-body{
+body {
   background-color: #026c96;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-h1{
-    color: white;
+h1 {
+  color: white;
 }
 
-.card-title img{
-    max-width: 30px;
+.card-title img {
+  max-width: 30px;
 }
 
-.card{
-width: 300px;
-    background-color: #026c96;
- border: solid white; 
-    flex-direction: row;
-    margin: 5px;
-    -webkit-box-shadow: 0px 0px 13px 3px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 13px 3px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 13px 3px rgba(0,0,0,0.75);
+.card {
+  width: 300px;
+  background-color: #026c96;
+  border: solid white;
+  flex-direction: row;
+  margin: 5px;
+  -webkit-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
 }
 
-.card h5, p{
-    color: white ;
+.card h5,
+p {
+  color: white;
 }
 
-.card h5{
-    font-family: 'Roboto Slab', serif;
+.card h5 {
+  font-family: "Roboto Slab", serif;
 }
 
-.homelogo{
-    margin-right: 10px;
+.homelogo {
+  margin-right: 10px;
 }
 
-.awaylogo{
-    margin-left: 10px;
+.awaylogo {
+  margin-left: 10px;
 }
 
-h1{
-    font-family: 'Roboto Slab', serif;
+h1 {
+  font-family: "Roboto Slab", serif;
 }
 
-.nfl, .nhl{
-justify-content: center;
-    display: flex; 
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 20px;
+.nfl {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.nhl {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
