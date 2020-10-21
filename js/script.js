@@ -2,7 +2,7 @@ import { NFL_SCORE } from "./data/data.js";
 import { NHL_SCORE } from "./data/data.js";
 import { MLB_SCORE } from "./data/data.js"
 
-/* //NFL
+//NFL
 (async function () {
   const nflContainer = document.querySelector(".nfl");
   const scoreURL = `${NFL_SCORE}`;
@@ -75,26 +75,34 @@ import { MLB_SCORE } from "./data/data.js"
     error = ("Nothing here", error);
     console.log(error);
   }
-})(); */
+})();
 
 
 //MLB
 
 (async function () {
-  const mlbContainer = document.querySelector(".nhl");
+  const mlbContainer = document.querySelector(".mlb");
   const scoreURL = `${MLB_SCORE}`;
 
   try {
     const mlbScoreResponse = await fetch(scoreURL);
     const mlbScore = await mlbScoreResponse.json();
-console.log(mlbScore);
 
-    mlbScore.games.forEach(match => {
-      console.log(match);
+
+    mlbScore.dates.forEach(match => {
+      match.games.forEach(matchdates =>{
+        console.log(matchdates)
+
+
       
-      const hometeamName = match.teams.home.abbreviation;
-      const awayteamName = match.teams.away.abbreviation;
-      const gameStatus = match.status.state;
+      const hometeamName = matchdates.teams.home.team.name;
+      const awayteamName = matchdates.teams.away.team.name;
+      const hometeamScore = matchdates.teams.home.score;
+      const awayteamScore = matchdates.teams.away.score;
+      const gameStatus = matchdates.status.detailedState;
+      const stadium = matchdates.venue.name;
+
+      
       
 
       mlbContainer.innerHTML += `
@@ -102,12 +110,14 @@ console.log(mlbScore);
       <div class="card">
                 <div class="card-body">
                 <h5 class="card-title"><img class="homelogo" src="./assets/mlb/${hometeamName}.png"</img>${hometeamName} vs ${awayteamName} <img class="awaylogo" src="./assets/mlb/${awayteamName}.png" </img> </h5>
-                <p class="card-text">Score: ${match.scores[hometeamName]} - ${match.scores[awayteamName]}</p>
+                <p class="card-text">Score: ${hometeamScore} - ${awayteamScore}</p>
                 <p class="card-text">Status: ${gameStatus}</p>
+                <p class="card-text">Stadium: ${stadium}</p>
             </div>
             </div>
             </div>
       `;
+    })
     })
   } catch (error) {
     error = ("Nothing here", error);
