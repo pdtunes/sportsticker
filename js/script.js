@@ -5,7 +5,7 @@ import { MLB_SCORE } from "./data/data.js"
 //NFL
 (async function () {
   const nflContainer = document.querySelector(".nfl");
-  const scoreURL = `${NFL_SCORE}`;
+  const scoreURL = `${NFL_SCORE}`;        
 
   try {
     const nflScoreResponse = await fetch(scoreURL);
