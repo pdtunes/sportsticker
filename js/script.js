@@ -1,11 +1,11 @@
 import { NFL_SCORE } from "./data/data.js";
 import { NHL_SCORE } from "./data/data.js";
-import { MLB_SCORE } from "./data/data.js"
+import { MLB_SCORE } from "./data/data.js";
 
 //NFL
 (async function () {
   const nflContainer = document.querySelector(".nfl");
-  const scoreURL = `${NFL_SCORE}`;        
+  const scoreURL = `${NFL_SCORE}`;
 
   try {
     const nflScoreResponse = await fetch(scoreURL);
@@ -50,14 +50,12 @@ import { MLB_SCORE } from "./data/data.js"
     const nhlScoreResponse = await fetch(scoreURL);
     const nhlScore = await nhlScoreResponse.json();
 
-
-    nhlScore.games.forEach(match => {
+    nhlScore.games.forEach((match) => {
       console.log(match);
-      
+
       const hometeamName = match.teams.home.abbreviation;
       const awayteamName = match.teams.away.abbreviation;
       const gameStatus = match.status.state;
-      
 
       nhlContainer.innerHTML += `
 
@@ -70,13 +68,12 @@ import { MLB_SCORE } from "./data/data.js"
             </div>
             </div>
       `;
-    })
+    });
   } catch (error) {
     error = ("Nothing here", error);
     console.log(error);
   }
 })();
-
 
 //MLB
 
@@ -88,24 +85,18 @@ import { MLB_SCORE } from "./data/data.js"
     const mlbScoreResponse = await fetch(scoreURL);
     const mlbScore = await mlbScoreResponse.json();
 
+    mlbScore.dates.forEach((match) => {
+      match.games.forEach((matchdates) => {
+        console.log(matchdates);
 
-    mlbScore.dates.forEach(match => {
-      match.games.forEach(matchdates =>{
-        console.log(matchdates)
+        const hometeamName = matchdates.teams.home.team.name;
+        const awayteamName = matchdates.teams.away.team.name;
+        const hometeamScore = matchdates.teams.home.score;
+        const awayteamScore = matchdates.teams.away.score;
+        const gameStatus = matchdates.status.detailedState;
+        const stadium = matchdates.venue.name;
 
-
-      
-      const hometeamName = matchdates.teams.home.team.name;
-      const awayteamName = matchdates.teams.away.team.name;
-      const hometeamScore = matchdates.teams.home.score;
-      const awayteamScore = matchdates.teams.away.score;
-      const gameStatus = matchdates.status.detailedState;
-      const stadium = matchdates.venue.name;
-
-      
-      
-
-      mlbContainer.innerHTML += `
+        mlbContainer.innerHTML += `
 
       <div class="card">
                 <div class="card-body">
@@ -117,8 +108,8 @@ import { MLB_SCORE } from "./data/data.js"
             </div>
             </div>
       `;
-    })
-    })
+      });
+    });
   } catch (error) {
     error = ("Nothing here", error);
     console.log(error);
