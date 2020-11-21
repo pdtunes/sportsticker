@@ -6,6 +6,17 @@ body {
 h1 {
   color: white;
 }
+.fa{
+  color: white;
+}
+
+.far{
+  color: rgb(255, 255, 255);
+}
+
+h6{
+  color: white;
+}
 
 .card-title img {
   max-width: 30px;
@@ -66,3 +77,4 @@ h1 {
   flex-wrap: wrap;
   margin-top: 20px;
 }
+

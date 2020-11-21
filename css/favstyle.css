@@ -24,7 +24,11 @@ body {
   .card p{
       font-size: 30px;
   }
-  .card h2,
+
+  h2{
+    color: white;
+  }
+  .card,
   p {
     color: white;
   }

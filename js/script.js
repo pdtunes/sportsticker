@@ -109,13 +109,13 @@ import { getExistingFavs } from "./utils/getExistingFavs.js";
       existingFavs.push(team);
       saveToFavs(existingFavs);
     } else {
-      const newFavs = existingFavs.filter((fav) => fav.hometeamname !== nflScore.hometeamname);
+      const newFavs = existingFavs.filter((fav) => fav.hometeamname !== hometeamname);
       saveToFavs(newFavs);
     }
   }
 
   function saveToFavs(team) {
-    console.log(team);
+
     localStorage.setItem("favorites", JSON.stringify(team));
   }
 })();
