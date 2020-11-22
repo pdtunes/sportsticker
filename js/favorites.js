@@ -9,6 +9,8 @@ function favoriteList() {
   }
 
   favorites.forEach((favorite) => {
+    const result = +favorite.hometeamscore + +favorite.awayteamscore;
+    console.log(typeof favorite.hometeamscore);
     container.innerHTML += `
     <div class="card">
     <div class="card-body">
@@ -17,10 +19,11 @@ function favoriteList() {
     <p class="card-text">Stadium: ${favorite.stadium} </p>
     <p class="card-text">Quarter: ${favorite.quarter} </p>
     <p class="card-text">Clock: ${favorite.clock} </p>
+    <p class="card-text">Total Poins: ${result} </p>
 
-              </div>
-          </div>
-      </div>
+    </div>
+  </div>
+
           `;
   });
 }
