@@ -10,7 +10,7 @@ function favoriteList() {
 
   favorites.forEach((favorite) => {
     const result = +favorite.hometeamscore + +favorite.awayteamscore;
-    console.log(typeof favorite.hometeamscore);
+    console.log(favorite.hometeamscore);
     container.innerHTML += `
     <div class="card">
     <div class="card-body">
