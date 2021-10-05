@@ -3,8 +3,6 @@ import { NHL_SCORE } from "./data/data.js";
 import { MLB_SCORE } from "./data/data.js";
 import { getExistingFavs } from "./utils/getExistingFavs.js";
 
-
-
 //NFL
 (async function () {
   const nflContainer = document.querySelector(".nfl");
@@ -15,8 +13,8 @@ import { getExistingFavs } from "./utils/getExistingFavs.js";
     const nflScoreResponse = await fetch(scoreURL);
     const nflScore = await nflScoreResponse.json();
 
-
     for (let item in nflScore) {
+      console.log("item", nflScore.events);
       const hometeamname = nflScore[item].home.abbr;
       const awayteamname = nflScore[item].away.abbr;
       const hometeamscore = nflScore[item].home.score.T;
@@ -34,7 +32,7 @@ import { getExistingFavs } from "./utils/getExistingFavs.js";
       if (doesTeamExist) {
         cssClass = "fa";
       }
-    
+
       nflContainer.innerHTML += `
 
       <div class="card">
@@ -105,17 +103,17 @@ import { getExistingFavs } from "./utils/getExistingFavs.js";
         stadium: stadium,
       };
 
-
       existingFavs.push(team);
       saveToFavs(existingFavs);
     } else {
-      const newFavs = existingFavs.filter((fav) => fav.hometeamname !== hometeamname);
+      const newFavs = existingFavs.filter(
+        (fav) => fav.hometeamname !== hometeamname
+      );
       saveToFavs(newFavs);
     }
   }
 
   function saveToFavs(team) {
-
     localStorage.setItem("favorites", JSON.stringify(team));
   }
 })();
@@ -131,8 +129,6 @@ import { getExistingFavs } from "./utils/getExistingFavs.js";
     const nhlScore = await nhlScoreResponse.json();
 
     nhlScore.games.forEach((match) => {
-
-
       const hometeamname = match.teams.home.abbreviation;
       const awayteamname = match.teams.away.abbreviation;
       const gameStatus = match.status.state;
@@ -195,5 +191,3 @@ import { getExistingFavs } from "./utils/getExistingFavs.js";
     console.log(error);
   }
 })();
-
-
